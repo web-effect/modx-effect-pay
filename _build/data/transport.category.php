@@ -1,0 +1,23 @@
+<?php
+
+//$modx->loadClass('modCategory');
+//var_dump($modx->map['modCategory']);
+$data['modCategory']=[
+    'main'=>[
+        'fields'=>[
+            'category'=>$config['component']['name']
+        ],
+        'options'=>$config['data_options']['modCategory']
+    ],
+    'defaults'=>[
+        'fields'=>[
+            'category'=>'defaults'
+        ],
+        'options'=>$config['data_options']['modCategory.child'],
+        'relations'=>[
+            'modCategory'=>[
+                'main'=>'Children'
+            ]
+        ]
+    ]
+];
