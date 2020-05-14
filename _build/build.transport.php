@@ -3,7 +3,7 @@
  * MODX CMP package build script
  *
  */
-/*ini_set('display_startup_errors', 1);
+ini_set('display_startup_errors', 1);
 ini_set('display_errors', 1);
 ini_set('html_errors', 1);
 ini_set('log_errors', 1);
@@ -14,7 +14,7 @@ ini_set('track_errors', 1);
 ini_set('docref_root', 0);
 ini_set('docref_ext', 0);
 ini_set('error_reporting', -1);
-ini_set('log_errors_max_len', 0);*/
+ini_set('log_errors_max_len', 0);
 
 $mtime = microtime();
 $mtime = explode(" ", $mtime);

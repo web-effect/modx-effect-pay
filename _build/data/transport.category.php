@@ -9,6 +9,7 @@ $data['modCategory']=[
         ],
         'options'=>$config['data_options']['modCategory']
     ],
+    /*
     'defaults'=>[
         'fields'=>[
             'category'=>'defaults'
@@ -19,5 +20,5 @@ $data['modCategory']=[
                 'main'=>'Children'
             ]
         ]
-    ]
+    ]*/
 ];

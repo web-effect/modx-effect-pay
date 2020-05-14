@@ -15,7 +15,8 @@ $config['component']['resolvers']=array_merge_recursive($config['component']['re
                 'source' => $config['component']['assets'],
                 'target' => "return MODX_ASSETS_PATH . 'components/';",
             ]
-        ],
+		],
+		/*
         'options'=>[
             'type'=>'php',
             'options'=>[
@@ -27,7 +28,7 @@ $config['component']['resolvers']=array_merge_recursive($config['component']['re
             'options'=>[
                 'source' => $config['resolvers'].'model.resolver.php',
             ]
-        ]
+        ]*/
     ],
     'after'=>[]
 ]);

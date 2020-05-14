@@ -8,9 +8,9 @@ $config=[
     'includes' => __DIR__ . '/includes/',
     'data' => __DIR__ . '/data/',
     'component'=>[
-        'namespace'=>'sample',
-        'name'=>'Sample',
-        'version'=>'0.3.5',
+        'namespace'=>'effectpay',
+        'name'=>'Effect Pay',
+        'version'=>'0.0.1',
         'release'=>'alpha',
         //'core'=>dirname(__DIR__).'/core/components/',
         //'assets'=>dirname(__DIR__).'/assets/components/',
@@ -19,7 +19,7 @@ $config=[
             'after'=>[]
         ],
         'attributes'=>[
-            'requires'=>['php' => '>=7.1'],
+            'requires'=>['php' => '>=7.2'],
             'setup-options'=>['source' => __DIR__.'/setup.options.php']
         ]
     ],
