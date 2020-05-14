@@ -2,7 +2,7 @@
 
 Компонент для онлайн-оплаты.
 
-[Скачать пакет](packages/effectpay-0.1.0-alpha.transport.zip)
+[Скачать пакет](packages)
 
 ## Подключение
 
