@@ -2,6 +2,7 @@
 
 Компонент для онлайн-оплаты.
 
+[Скачать пакет](packages/effectpay-0.1.0-alpha.transport.zip)
 
 ## Подключение
 
@@ -36,7 +37,9 @@
 Для Shopkeeper: в названии способа оплаты должно быть «robokassa»
 
 В личном кабинете сгенерировать 4 пароля, прописать в системные настройки.
+
 Callback-уведомления (Result Url): assets/components/effectpay/payment.php?mode=robokassa_callback. Метод: POST.
+
 Прописать Result Url и задать нетестовые пароли попросить заказчика, так как нужно подтверждение. 
 
 Алгоритм работы:
