@@ -2,6 +2,8 @@
 
 $data['modSystemSetting'] = [
 
+    /** робокасса */
+
     'rid' => [
         'fields' => [
             'key' => $config['component']['namespace'].'.robokassa.id',
@@ -36,6 +38,43 @@ $data['modSystemSetting'] = [
         'options' => $config['data_options']['modSystemSetting']
     ],
 
+    /** сбербанк */
+
+    'sid' => [
+        'fields' => [
+            'key' => $config['component']['namespace'].'.sberbank.id',
+            'value' => '',
+            'xtype' => 'textfield',
+            'namespace' => $config['component']['namespace'],
+            'area' => $config['component']['namespace'].'.main'
+        ],
+        'options' => $config['data_options']['modSystemSetting']
+    ],
+
+    'stest' => [
+        'fields' => [
+            'key' => $config['component']['namespace'].'.sberbank.is_test',
+            'value' => '1',
+            'xtype' => 'textfield',
+            'namespace' => $config['component']['namespace'],
+            'area' => $config['component']['namespace'].'.main'
+        ],
+        'options' => $config['data_options']['modSystemSetting']
+    ],
+
+    'spass' => [
+        'fields' => [
+            'key' => $config['component']['namespace'].'.sberbank.passwords',
+            'value' => 'testPass||pass1',
+            'xtype' => 'textfield',
+            'namespace' => $config['component']['namespace'],
+            'area' => $config['component']['namespace'].'.main'
+        ],
+        'options' => $config['data_options']['modSystemSetting']
+    ],
+
+    /** */
+
     'shkstatuses' => [
         'fields' => [
             'key' => $config['component']['namespace'].'.shk.statuses',
@@ -46,5 +85,5 @@ $data['modSystemSetting'] = [
         ],
         'options' => $config['data_options']['modSystemSetting']
     ],
-
+    
 ];

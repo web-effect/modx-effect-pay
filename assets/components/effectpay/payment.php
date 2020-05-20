@@ -9,12 +9,11 @@ require MODX_CORE_PATH . 'components/effectpay/autoload.php';
 $out = [];
 
 switch ($_REQUEST['mode']) {
-
-
+    
     case 'robokassa_pay':
         $id = (int)$_GET['id'];
         $key = $_GET['key'];
-        $resp = Robokassa::buildFormData($id, $key);
+        $resp = PayRobokassa::buildFormData($id, $key);
         
         if (!$resp[0]) {
             die($resp[1] ?? 'Ошибка');
@@ -34,12 +33,14 @@ switch ($_REQUEST['mode']) {
 
     case 'robokassa_callback':
         if ($_REQUEST['InvId']) {
-            echo Robokassa::callback($_REQUEST);
+            echo PayRobokassa::callback($_REQUEST);
         }
         break;
 
     case 'sberbank_callback':
-        
+        if ($_REQUEST['orderNumber']) {
+            echo PaySberbank::callback($_REQUEST);
+        }
         break;
 
     default:

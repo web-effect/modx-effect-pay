@@ -1,6 +1,6 @@
 <?php
 
-class Robokassa {
+class PayRobokassa {
     
     /**
      * 
@@ -29,7 +29,7 @@ class Robokassa {
     public static function buildFormData(int $id, $key = '')
     {
         $cfg = self::cfg();
-        $order = Effectpay::getOrder($id);
+        $order = Pay::getOrder($id);
         $options = $order['options'] ?: [];
 
         $keyCheck = ($key && $order['options']['pay_key'] == $key) ? true : false; 
@@ -84,12 +84,12 @@ class Robokassa {
         $id = $input['InvId'];
         $sum = $input['OutSum'];
         
-        $order = Effectpay::getOrder($id);
+        $order = Pay::getOrder($id);
 
         $crc2  = strtoupper(md5("$sum:$id:$pass"));
         
         if ($crc2 == strtoupper($input['crc'])) {
-            $success = Effectpay::changeStatus($id, 1);
+            $success = Pay::changeStatus($id, 1);
             if ($success) return 'OK' . $id;
         }
 

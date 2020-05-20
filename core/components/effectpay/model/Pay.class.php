@@ -1,9 +1,10 @@
 <?php
 
-class Effectpay
+class Pay
 {
     const SHOP = 'shopkeeper3';
 
+    
     /**
      * 
      */
@@ -11,7 +12,7 @@ class Effectpay
     {
         switch (self::SHOP) {
             case 'shopkeeper3':
-                return Shopkeeper::getOrder($id);
+                return PayShk::getOrder($id);
         }
     }
 
@@ -23,7 +24,7 @@ class Effectpay
     {
         switch (self::SHOP) {
             case 'shopkeeper3':
-                return Shopkeeper::changeStatus($id, $isSuccess);
+                return PayShk::changeStatus($id, $isSuccess);
         }
     }
 }
