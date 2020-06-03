@@ -1,6 +1,17 @@
 <?php
 
 $data['modSystemSetting'] = [
+    'return_page' => [
+        'fields' => [
+            'key' => $config['component']['namespace'].'.return_page',
+            'value' => 1,
+            'xtype' => 'numberfield',
+            'namespace' => $config['component']['namespace'],
+            'area' => $config['component']['namespace'].'.main'
+        ],
+        'options' => $config['data_options']['modSystemSetting']
+    ],
+
 
     /** робокасса */
 

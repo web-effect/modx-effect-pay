@@ -12,11 +12,13 @@ class PaySberbank {
         $isTest = (int)$modx->getOption('effectpay.sberbank.is_test', null, 1);
         $pass = $modx->getOption('effectpay.sberbank.passwords', null, '');
         $pass = explode('||', $pass);
+        $returnPage = (int)$modx->getOption('effectpay.return_page', null, 1);
 
         return [
             'isTest' => $isTest,
             'id' => $modx->getOption('effectpay.sberbank.id', null, ''),
             'pass' => $isTest ? ($pass[0] ?? '') : ($pass[1] ?? ''),
+            'returnUrl' => $modx->makeUrl($returnPage, '', '', 'full')
         ];
     }
 
@@ -67,7 +69,7 @@ class PaySberbank {
         $data = [
 			'userName' => $cfg['id'],
 			'password' => $cfg['pass'],
-			'returnUrl' => $modx->makeUrl(1, '', '', 'full'),
+			'returnUrl' => $cfg['returnUrl'],
 			'orderNumber' => $order['id'],
 			'amount' => self::calcPrice($order['total_price'], 0),
             'orderBundle'=>json_encode($orderBundle),

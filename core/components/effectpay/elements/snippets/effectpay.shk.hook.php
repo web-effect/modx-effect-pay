@@ -1,5 +1,4 @@
 <?php
-
 if ($hook) {
     require MODX_CORE_PATH . 'components/effectpay/autoload.php';
 
