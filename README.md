@@ -26,7 +26,7 @@
 <$if $.session.shk_pay_link$>
     <script>window.open('<$$.session.shk_pay_link$>', '_blank');</script>
 <$/if$>
-``
+```
 
 Вывод ошибок (для Сбербанка):
 ```
