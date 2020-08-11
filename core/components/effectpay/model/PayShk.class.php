@@ -55,12 +55,8 @@ class PayShk
 
 
         $_SESSION['shk_pay_method'] = $pay;
-        if ($link) {
-            $_SESSION['shk_pay_link'] = $link;
-        }
-        if ($error) {
-            $_SESSION['shk_pay_error'] = $error;
-        }
+        $_SESSION['shk_pay_link'] = $link?:false;
+        $_SESSION['shk_pay_error'] = $error?:false;
 
         return true;
     }
