@@ -43,5 +43,12 @@ switch ($_REQUEST['mode']) {
         }
         break;
 
+    case 'paykeeper_callback':
+        if ($_REQUEST['id']) {
+            //$modx->log(1, print_r($_REQUEST, 1));
+            echo PayPaykeeper::callback($_REQUEST);
+        }
+        break;
+
     default:
 }

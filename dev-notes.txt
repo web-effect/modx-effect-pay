@@ -1,0 +1,20 @@
+cd ~/_dev
+git clone https://github.com/web-effect/modx-effect-pay.git
+cd ~/_dev/modx-effect-pay
+git submodule add https://github.com/web-effect/modx-packageBuilder _build/includes/builder
+git submodule update --init --recursive
+
+cd ~
+NAME=effectpay
+GITNAME=modx-effect-pay
+ln -s ../../_dev/$GITNAME/core/components/$NAME   core/components/$NAME
+ln -s ../../../_dev/$GITNAME/assets/components/$NAME   public_html/assets/components/$NAME
+
+cd ~/_dev/modx-effect-pay
+
+Сборка пакета
+cd ~/_dev/modx-effect-pay/_build
+php7.2 build.transport.php
+
+git add -A && git commit -m ''
+git push origin master

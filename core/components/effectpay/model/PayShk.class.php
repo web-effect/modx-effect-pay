@@ -20,6 +20,9 @@ class PayShk
         if (stripos($payment, 'sberbank') !== false || stripos($payment, 'сбербанк') !== false) {
             $pay = 'sberbank';
         }
+        if (stripos($payment, 'paykeeper') !== false) {
+            $pay = 'paykeeper';
+        }
 
         if ($pay) {
             $url = $modx->getOption('site_url');
@@ -43,7 +46,16 @@ class PayShk
                 } else {
                     $error = $resp[1] ?? 'Ошибка оплаты';
                 }
+            } else if ($pay == 'paykeeper') {
+                $resp = PayPaykeeper::pay($id);
+                if ($resp[0]) {
+                    $key = $resp[1]['pay_key'];
+                    $link = $resp[1]['pay_link'];
+                } else {
+                    $error = $resp[1] ?? 'Ошибка оплаты';
+                }
             }
+
 
             if (!$error) {
                 $opts['pay_key'] = $key;

@@ -84,6 +84,52 @@ $data['modSystemSetting'] = [
         'options' => $config['data_options']['modSystemSetting']
     ],
 
+    /** paykeeper */
+
+    'pid' => [
+        'fields' => [
+            'key' => $config['component']['namespace'].'.paykeeper.id',
+            'value' => '',
+            'xtype' => 'textfield',
+            'namespace' => $config['component']['namespace'],
+            'area' => $config['component']['namespace'].'.main'
+        ],
+        'options' => $config['data_options']['modSystemSetting']
+    ],
+
+    'ppass' => [
+        'fields' => [
+            'key' => $config['component']['namespace'].'.paykeeper.password',
+            'value' => '',
+            'xtype' => 'textfield',
+            'namespace' => $config['component']['namespace'],
+            'area' => $config['component']['namespace'].'.main'
+        ],
+        'options' => $config['data_options']['modSystemSetting']
+    ],
+
+    'pserver' => [
+        'fields' => [
+            'key' => $config['component']['namespace'].'.paykeeper.server',
+            'value' => '',
+            'xtype' => 'textfield',
+            'namespace' => $config['component']['namespace'],
+            'area' => $config['component']['namespace'].'.main'
+        ],
+        'options' => $config['data_options']['modSystemSetting']
+    ],
+
+    'psecret' => [
+        'fields' => [
+            'key' => $config['component']['namespace'].'.paykeeper.secret',
+            'value' => '',
+            'xtype' => 'textfield',
+            'namespace' => $config['component']['namespace'],
+            'area' => $config['component']['namespace'].'.main'
+        ],
+        'options' => $config['data_options']['modSystemSetting']
+    ],
+
     /** */
 
     'shkstatuses' => [
