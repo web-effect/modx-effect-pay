@@ -125,8 +125,6 @@ class PayPaykeeper {
     {
         $cfg = self::cfg();
         $secret_seed = $cfg['secret'];
-        //$order = Pay::getOrder($_REQUEST['orderid']);
-        //$pay_key = $order['options']['pay_key'] ?? '';
 
         $id = $input['id'] ?? '';
         $sum = $input['sum'] ?? '';
@@ -134,12 +132,12 @@ class PayPaykeeper {
         $orderid = $input['orderid'] ?? '';
         $key = $input['key'] ?? '';
         
-        if ($key == md5($id.sprintf("%.2lf", $sum).$clientid.$orderid.$secret_seed)) {
+        if ($key == md5($id.$sum.$clientid.$orderid.$secret_seed)) {
             $success = Pay::changeStatus($orderid, 1);
-            if ($success) return "OK " . md5($id . $secret_seed);
-            return 'error';
+            if ($success) return "OK " . md5($id.$secret_seed);
+            return 'Status not changed';
         } else {
-            return "Error! Hash mismatch " . sprintf("%.2lf", $sum) . " " .  md5(($id . sprintf("%.2lf", $sum).$clientid.$orderid.$secret_seed));
+            return "Error! Hash mismatch " . md5(($id.$sum.$clientid.$orderid.$secret_seed));
         }
     }
 

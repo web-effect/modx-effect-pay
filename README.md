@@ -1,6 +1,6 @@
 # Effect Pay
 
-Компонент для онлайн-оплаты через Сбербанк и Робокассу.
+Компонент для онлайн-оплаты через Сбербанк, Робокассу, PayKeeper.
 
 [Скачать пакет](packages)
 
@@ -44,7 +44,7 @@
 Shopkeeper: в названии способа оплаты должно быть «sberbank» или «сбербанк».
 
 Callback-уведомления подключаются через техподдержку Сбербанка.
-Адрес: `assets/components/effectpay/payment.php?mode=sberbank_callback`.
+Адрес: `SITE/assets/components/effectpay/payment.php?mode=sberbank_callback`.
 
 Тестовые карты, документация: https://securepayments.sberbank.ru/wiki/doku.php/test_cards
 
@@ -61,9 +61,21 @@ Callback-уведомления (Result Url): assets/components/effectpay/paymen
 
 Алгоритм работы:
 - Заказу при оформлении присваивается рандомный ключ `[options][pay_key]`.
-- Сохраняется ссылка на оплату `[options][pay_link]`: `assets/components/effectpay/payment.php?mode=robokassa_pay&id=$id&key=$key`.
+- Сохраняется ссылка на оплату `[options][pay_link]`: `SITE/assets/components/effectpay/payment.php?mode=robokassa_pay&id=$id&key=$key`.
 - При переходе по ссылке получаем заказ по id, проверяя key (чтоб кто попало не смог оплатить заказ, зная id).
 - Генерируется форма, автоматически происходит сабмит и редирект на страницу оплаты.
+
+### PayKeeper
+
+Shopkeeper: в названии способа оплаты должно быть «paykeeper».
+
+Тестовый режим отсутствует.
+
+effectpay.paykeeper.server — адрес ЛК, например `site.server.paykeeper.ru`.
+
+Callback-уведомления (вкладка «Получение информации о платежах»). Способ: POST-оповещения. URL: `SITE/assets/components/effectpay/payment.php?mode=paykeeper_callback`. Сгенерировать секретное слово, задать его в настройках сайта.
+
+
 
 
 ## todo

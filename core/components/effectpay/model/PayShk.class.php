@@ -10,23 +10,9 @@ class PayShk
     {
         global $modx;
 
-        $pay = '';
-        $link = '';
-        $error = '';
+        $resp = Pay::payment($id, $payment);
 
-        if (stripos($payment, 'robokassa') !== false) {
-            $pay = 'robokassa';
-        }
-        if (stripos($payment, 'sberbank') !== false || stripos($payment, 'сбербанк') !== false) {
-            $pay = 'sberbank';
-        }
-        if (stripos($payment, 'paykeeper') !== false) {
-            $pay = 'paykeeper';
-        }
-
-        if ($pay) {
-            $url = $modx->getOption('site_url');
-
+        if ($resp['method']) {
             $statuses = $modx->getOption('effectpay.shk.statuses', null, '2||6||7');
             $statuses = explode('||', $statuses);
 
@@ -35,40 +21,17 @@ class PayShk
 
             $opts = json_decode($order->get('options'), true);
 
-            if ($pay == 'robokassa') {
-                $key = uniqid();
-                $link = $url . "assets/components/effectpay/payment.php?mode=robokassa_pay&id={$id}&key={$key}";
-            } else if ($pay == 'sberbank') {
-                $resp = PaySberbank::pay($id);
-                if ($resp[0]) {
-                    $key = $resp[1]['pay_key'];
-                    $link = $resp[1]['pay_link'];
-                } else {
-                    $error = $resp[1] ?? 'Ошибка оплаты';
-                }
-            } else if ($pay == 'paykeeper') {
-                $resp = PayPaykeeper::pay($id);
-                if ($resp[0]) {
-                    $key = $resp[1]['pay_key'];
-                    $link = $resp[1]['pay_link'];
-                } else {
-                    $error = $resp[1] ?? 'Ошибка оплаты';
-                }
-            }
-
-
-            if (!$error) {
-                $opts['pay_key'] = $key;
-                $opts['pay_link'] = $link;
+            if ($resp['pay_key'] && $resp['pay_link']) {
+                $opts['pay_key'] = $resp['pay_key'];
+                $opts['pay_link'] = $resp['pay_link'];
             }
             $order->set('options', json_encode($opts));
             $order->save();  
         }
 
-
-        $_SESSION['shk_pay_method'] = $pay;
-        $_SESSION['shk_pay_link'] = $link?:false;
-        $_SESSION['shk_pay_error'] = $error?:false;
+        $_SESSION['shk_pay_method'] = $resp['method'] ?: false;
+        $_SESSION['shk_pay_link'] = $resp['pay_link'] ?: false;
+        $_SESSION['shk_pay_error'] = $resp['error'] ?: false;
 
         return true;
     }
