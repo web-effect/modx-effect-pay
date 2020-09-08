@@ -1,8 +1,8 @@
 # Effect Pay
 
-Компонент для онлайн-оплаты через Сбербанк, Робокассу, PayKeeper.
+Компонент для онлайн-оплаты через Сбербанк, Робокассу, PayKeeper, Альфа-банк.
 
-[Скачать (0.3.1)](https://github.com/web-effect/modx-effect-pay/raw/master/packages/effectpay-0.3.1-alpha.transport.zip)
+[Скачать (0.4.2)](https://github.com/web-effect/modx-effect-pay/raw/master/packages/effectpay-0.4.2-alpha.transport.zip)
 
 ## Подключение
 
@@ -65,6 +65,7 @@ Callback-уведомления (Result Url): assets/components/effectpay/paymen
 - При переходе по ссылке получаем заказ по id, проверяя key (чтоб кто попало не смог оплатить заказ, зная id).
 - Генерируется форма, автоматически происходит сабмит и редирект на страницу оплаты.
 
+
 ### PayKeeper
 
 Shopkeeper: в названии способа оплаты должно быть «paykeeper».
@@ -76,6 +77,16 @@ effectpay.paykeeper.server — адрес ЛК, например `site.server.p
 Callback-уведомления (вкладка «Получение информации о платежах»). Способ: POST-оповещения. URL: `SITE/assets/components/effectpay/payment.php?mode=paykeeper_callback`. Сгенерировать секретное слово, задать его в настройках сайта.
 
 
+### Альфа-банк
+
+Shopkeeper: в названии способа оплаты должно быть «alpha» или «альфа».
+
+Создать страницу «спасибо за заказ», прописать её id в настройку «effectpay.return_page». На странице вызвать сниппет: `[[!effectpay.checkStatus]]`.
+
+Тестовые карты: https://pay.alfabank.ru/ecommerce/instructions/merchantManual/pages/index/test_cards.html
+
+Для боевого режима нужно выполнить требования (по ссылке) и сделать заявку.
+https://pay.alfabank.ru/ecommerce/instructions/merchantManual/pages/index/script.html
 
 
 ## todo

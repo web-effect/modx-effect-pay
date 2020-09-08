@@ -72,7 +72,6 @@ class PayShk
     public static function getOrder(int $order)
     {
         global $modx;
-
         if(!defined('SHOPKEEPER_PATH'))define('SHOPKEEPER_PATH', MODX_CORE_PATH."components/shopkeeper3/");
         $modx->addPackage( 'shopkeeper3', SHOPKEEPER_PATH . 'model/' );
 
@@ -117,4 +116,5 @@ class PayShk
 
         return $_order;
     }
+
 }

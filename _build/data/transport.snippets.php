@@ -4,6 +4,9 @@ $sconfig=[
     'effectpay.shk.hook'=>[
 		'description' => '',
     ],
+    'effectpay.checkStatus'=>[
+		'description' => '',
+    ],
 ];
 
 foreach($sconfig?:[] as $snippet=>$options){

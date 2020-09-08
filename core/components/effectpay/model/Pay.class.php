@@ -38,11 +38,14 @@ class Pay
         if (stripos($payment, 'robokassa') !== false) {
             $pay = 'robokassa';
         }
-        if (stripos($payment, 'sberbank') !== false || stripos($payment, 'сбербанк') !== false) {
+        if (stripos($payment, 'sberbank') !== false || mb_stripos($payment, 'сбербанк') !== false) {
             $pay = 'sberbank';
         }
         if (stripos($payment, 'paykeeper') !== false) {
             $pay = 'paykeeper';
+        }
+        if (stripos($payment, 'alpha') !== false || mb_stripos($payment, 'альфа') !== false) {
+            $pay = 'alpha';
         }
         return $pay;
     }
@@ -72,6 +75,14 @@ class Pay
             } else {
                 $error = $resp[1] ?? 'Ошибка оплаты';
             }
+        } else if ($method == 'alpha') {
+            $resp = PayAlpha::pay($id);
+            if ($resp[0]) {
+                $key = $resp[1]['pay_key'];
+                $link = $resp[1]['pay_link'];
+            } else {
+                $error = $resp[1] ?? 'Ошибка оплаты';
+            } 
         } else if ($method == 'paykeeper') {
             $resp = PayPaykeeper::pay($id);
             if ($resp[0]) {

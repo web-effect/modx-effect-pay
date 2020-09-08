@@ -25,7 +25,6 @@ $data['modSystemSetting'] = [
         ],
         'options' => $config['data_options']['modSystemSetting']
     ],
-
     'rtest' => [
         'fields' => [
             'key' => $config['component']['namespace'].'.robokassa.is_test',
@@ -36,8 +35,6 @@ $data['modSystemSetting'] = [
         ],
         'options' => $config['data_options']['modSystemSetting']
     ],
-
-
     'rpass' => [
         'fields' => [
             'key' => $config['component']['namespace'].'.robokassa.passwords',
@@ -61,7 +58,6 @@ $data['modSystemSetting'] = [
         ],
         'options' => $config['data_options']['modSystemSetting']
     ],
-
     'stest' => [
         'fields' => [
             'key' => $config['component']['namespace'].'.sberbank.is_test',
@@ -72,7 +68,6 @@ $data['modSystemSetting'] = [
         ],
         'options' => $config['data_options']['modSystemSetting']
     ],
-
     'spass' => [
         'fields' => [
             'key' => $config['component']['namespace'].'.sberbank.passwords',
@@ -96,7 +91,6 @@ $data['modSystemSetting'] = [
         ],
         'options' => $config['data_options']['modSystemSetting']
     ],
-
     'ppass' => [
         'fields' => [
             'key' => $config['component']['namespace'].'.paykeeper.password',
@@ -107,7 +101,6 @@ $data['modSystemSetting'] = [
         ],
         'options' => $config['data_options']['modSystemSetting']
     ],
-
     'pserver' => [
         'fields' => [
             'key' => $config['component']['namespace'].'.paykeeper.server',
@@ -118,7 +111,6 @@ $data['modSystemSetting'] = [
         ],
         'options' => $config['data_options']['modSystemSetting']
     ],
-
     'psecret' => [
         'fields' => [
             'key' => $config['component']['namespace'].'.paykeeper.secret',
@@ -129,6 +121,31 @@ $data['modSystemSetting'] = [
         ],
         'options' => $config['data_options']['modSystemSetting']
     ],
+
+
+    /** альфа-банк */
+
+    'aid' => [
+        'fields' => [
+            'key' => $config['component']['namespace'].'.alpha.id',
+            'value' => '',
+            'xtype' => 'textfield',
+            'namespace' => $config['component']['namespace'],
+            'area' => $config['component']['namespace'].'.main'
+        ],
+        'options' => $config['data_options']['modSystemSetting']
+    ],
+    'apass' => [
+        'fields' => [
+            'key' => $config['component']['namespace'].'.alpha.password',
+            'value' => '',
+            'xtype' => 'textfield',
+            'namespace' => $config['component']['namespace'],
+            'area' => $config['component']['namespace'].'.main'
+        ],
+        'options' => $config['data_options']['modSystemSetting']
+    ],
+
 
     /** */
 
