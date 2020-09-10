@@ -14,11 +14,18 @@ class PaySberbank {
         $pass = explode('||', $pass);
         $returnPage = (int)$modx->getOption('effectpay.return_page', null, 1);
 
+        $tax = 0;
+        $taxCfg = $modx->getOption('effectpay.tax', null, '');
+        if ($taxCfg == '20/120') {
+            $tax = 7; // НДС чека по расчётной ставке 20/120
+        }
+
         return [
             'isTest' => $isTest,
             'id' => $modx->getOption('effectpay.sberbank.id', null, ''),
             'pass' => $isTest ? ($pass[0] ?? '') : ($pass[1] ?? ''),
-            'returnUrl' => $modx->makeUrl($returnPage, '', '', 'full')
+            'returnUrl' => $modx->makeUrl($returnPage, '', '', 'full'),
+            'tax' => $tax,
         ];
     }
 
@@ -45,7 +52,7 @@ class PaySberbank {
 
         $orderBundle = [];
         $discount = $order['discount'] ?? 0;
-        $tax =  ["taxType" => 7]; //НДС чека по расчётной ставке 20/120
+        $tax =  ["taxType" => $cfg['tax']];
 
         if (!empty($order['contacts']['email'])) {
             // выключено из-за строгой валидации email

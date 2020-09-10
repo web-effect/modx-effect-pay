@@ -12,6 +12,16 @@ $data['modSystemSetting'] = [
         'options' => $config['data_options']['modSystemSetting']
     ],
 
+    'tax' => [
+        'fields' => [
+            'key' => $config['component']['namespace'].'.tax',
+            'value' => '',
+            'xtype' => 'textfield',
+            'namespace' => $config['component']['namespace'],
+            'area' => $config['component']['namespace'].'.main'
+        ],
+        'options' => $config['data_options']['modSystemSetting']
+    ],
 
     /** робокасса */
 
