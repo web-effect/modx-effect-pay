@@ -2,7 +2,7 @@
 
 Компонент для онлайн-оплаты через Сбербанк, Робокассу, PayKeeper, Альфа-банк.
 
-[Скачать (0.4.2)](https://github.com/web-effect/modx-effect-pay/raw/master/packages/effectpay-0.4.2-alpha.transport.zip)
+[Скачать (0.4.3)](https://github.com/web-effect/modx-effect-pay/raw/master/packages/effectpay-0.4.3-alpha.transport.zip)
 
 ## Подключение
 
