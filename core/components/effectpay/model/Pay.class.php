@@ -47,6 +47,9 @@ class Pay
         if (stripos($payment, 'alpha') !== false || mb_stripos($payment, 'альфа') !== false) {
             $pay = 'alpha';
         }
+        if (stripos($payment, 'psb') !== false || mb_stripos($payment, 'псб') !== false) {
+            $pay = 'psb';
+        }
         return $pay;
     }
 
@@ -67,6 +70,10 @@ class Pay
             $url = $modx->getOption('site_url');
             $key = uniqid();
             $link = $url . "assets/components/effectpay/payment.php?mode=robokassa_pay&id={$id}&key={$key}";
+        } else if ($method == 'psb') {
+            $url = $modx->getOption('site_url');
+            $key = uniqid();
+            $link = $url . "assets/components/effectpay/payment.php?mode=psb_pay&id={$id}&key={$key}";
         } else if ($method == 'sberbank') {
             $resp = PaySberbank::pay($id);
             if ($resp[0]) {

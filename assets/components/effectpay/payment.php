@@ -37,6 +37,21 @@ switch ($_REQUEST['mode']) {
         }
         break;
 
+    case 'psb_pay':
+        $id = (int)$_GET['id'];
+        $key = $_GET['key'];
+        $resp = PayPsb::buildFormData($id, $key);
+        if (!$resp[0]) {
+            die($resp[1] ?? 'Ошибка');
+        } else {
+            echo $resp[1];
+        }
+        break;
+
+    case 'psb_callback':
+        $modx->log($_POST);
+        break;
+
     case 'sberbank_callback':
         if ($_REQUEST['orderNumber']) {
             echo PaySberbank::callback($_REQUEST);

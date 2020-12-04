@@ -12,6 +12,17 @@ $data['modSystemSetting'] = [
         'options' => $config['data_options']['modSystemSetting']
     ],
 
+    'merchant_email' => [
+        'fields' => [
+            'key' => $config['component']['namespace'].'.merchant_email',
+            'value' => '',
+            'xtype' => 'textfield',
+            'namespace' => $config['component']['namespace'],
+            'area' => $config['component']['namespace'].'.main'
+        ],
+        'options' => $config['data_options']['modSystemSetting']
+    ],
+
     'tax' => [
         'fields' => [
             'key' => $config['component']['namespace'].'.tax',
@@ -149,6 +160,49 @@ $data['modSystemSetting'] = [
         'fields' => [
             'key' => $config['component']['namespace'].'.alpha.password',
             'value' => '',
+            'xtype' => 'textfield',
+            'namespace' => $config['component']['namespace'],
+            'area' => $config['component']['namespace'].'.main'
+        ],
+        'options' => $config['data_options']['modSystemSetting']
+    ],
+
+
+    /** промсвязьбанк */
+    'psbtest' => [
+        'fields' => [
+            'key' => $config['component']['namespace'].'.psb.is_test',
+            'value' => '1',
+            'xtype' => 'textfield',
+            'namespace' => $config['component']['namespace'],
+            'area' => $config['component']['namespace'].'.main'
+        ],
+        'options' => $config['data_options']['modSystemSetting']
+    ],
+    'psbterminal' => [
+        'fields' => [
+            'key' => $config['component']['namespace'].'.psb.terminal',
+            'value' => '',
+            'xtype' => 'textfield',
+            'namespace' => $config['component']['namespace'],
+            'area' => $config['component']['namespace'].'.main'
+        ],
+        'options' => $config['data_options']['modSystemSetting']
+    ],
+    'psbmerchant' => [
+        'fields' => [
+            'key' => $config['component']['namespace'].'.psb.merchant',
+            'value' => '',
+            'xtype' => 'textfield',
+            'namespace' => $config['component']['namespace'],
+            'area' => $config['component']['namespace'].'.main'
+        ],
+        'options' => $config['data_options']['modSystemSetting']
+    ],
+    'psbkeys' => [
+        'fields' => [
+            'key' => $config['component']['namespace'].'.psb.keys',
+            'value' => 'компонента1||компонента2',
             'xtype' => 'textfield',
             'namespace' => $config['component']['namespace'],
             'area' => $config['component']['namespace'].'.main'
