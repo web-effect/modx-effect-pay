@@ -2,17 +2,21 @@
 
 class Pay
 {
-    const SHOP = 'shopkeeper3';
 
-    
     /**
      * 
      */
     public static function getOrder(int $id)
     {
-        switch (self::SHOP) {
+        global $modx;
+        $shop = $modx->getOption('effectpay.shop', null, 'shopkeeper3');
+        switch ($shop) {
             case 'shopkeeper3':
                 return PayShk::getOrder($id);
+            case 'effectshop':
+                require MODX_CORE_PATH . 'components/effectshop/autoload.php';
+                $Order = new Shop\Order();
+                return $Order->getOne($id);
         }
     }
 
@@ -22,9 +26,16 @@ class Pay
      */
     public static function changeStatus(int $id, $isSuccess)
     {
-        switch (self::SHOP) {
+        global $modx;
+        $shop = $modx->getOption('effectpay.shop', null, 'shopkeeper3');
+        switch ($shop) {
             case 'shopkeeper3':
                 return PayShk::changeStatus($id, $isSuccess);
+            case 'effectshop':
+                $status = $isSuccess ? 'pay_wait' : 'pay_error';
+                require MODX_CORE_PATH . 'components/effectshop/autoload.php';
+                $Order = new Shop\Order();
+                return $Order->changeStatus($id, $status);
         }
     }
 
@@ -47,7 +58,7 @@ class Pay
         if (stripos($payment, 'alpha') !== false || mb_stripos($payment, 'альфа') !== false) {
             $pay = 'alpha';
         }
-        if (stripos($payment, 'psb') !== false || mb_stripos($payment, 'псб') !== false) {
+        if (stripos($payment, 'psb') !== false || mb_stripos($payment, 'псб') !== false || mb_stripos($payment, 'промсвязьбанк') !== false) {
             $pay = 'psb';
         }
         return $pay;

@@ -49,7 +49,7 @@ switch ($_REQUEST['mode']) {
         break;
 
     case 'psb_callback':
-        $modx->log($_POST);
+        echo PayPsb::callback();
         break;
 
     case 'sberbank_callback':
@@ -60,7 +60,6 @@ switch ($_REQUEST['mode']) {
 
     case 'paykeeper_callback':
         if ($_REQUEST['id']) {
-            //$modx->log(1, print_r($_REQUEST, 1));
             echo PayPaykeeper::callback($_REQUEST);
         }
         break;

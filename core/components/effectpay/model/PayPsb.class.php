@@ -54,7 +54,7 @@ class PayPsb {
         $data = [
             'amount' => number_format($summ, 2, '.',''),
             'currency' => 'RUB',
-            'order' => (string)$id . '000000', // мин.длина - 6
+            'order' => (string)$id + 100000, // мин. длина - 6
             'desc' => 'Платёж № ' . $id,
             'terminal' => $cfg['terminal'],
             'trtype' => '1',
@@ -103,39 +103,22 @@ class PayPsb {
 
 
     /**
-     * не работает
+     * 
      */
-    public function callback(array $input)
-    {
-        /*
-        $cfg = self::cfg();
-        $login = $cfg['id'];
-        $pass = $cfg['pass2'];
-
-        $id = $input['InvId'];
-        $sum = $input['OutSum'];
-        
-        $order = Pay::getOrder($id);
-
-        $crc2  = strtoupper(md5("$sum:$id:$pass"));
-        
-        if ($crc2 == strtoupper($input['crc'])) {
-            $success = Pay::changeStatus($id, 1);
-            if ($success) return 'OK' . $id;
-        }
-
-        return 'error';*/
+    public function callback()
+    {     
         if (isset($_POST['P_SIGN'])) {
-            $comp1 = 'C50E41160302E0F5D6D59F1AA3925C45';
-            $comp2 = '00000000000000000000000000000000';
+            $cfg = self::cfg();
+            $comp1 = $cfg['key1'];
+            $comp2 = $cfg['key2'];
 
-            $params = array_change_key_case($_POST,CASE_LOWER);
+            $params = array_change_key_case($_POST, CASE_LOWER);
             $vars =
             ["amount","currency","order","merch_name","merchant","terminal","email","trtype","timestamp","nonce","backref"
             ,"result","rc","rctext","authcode","rrn","int_ref"];
             $string = '';
             foreach ($vars as $param){
-                if(isset($params[$param]) && strlen($params[$param]) != 0){
+                if (isset($params[$param]) && strlen($params[$param]) != 0){
                     $string .= strlen($params[$param]) . $params[$param];
                 } else {
                     $string .= "-";
@@ -144,9 +127,10 @@ class PayPsb {
             $key = strtoupper(implode(unpack("H32",pack("H32",$comp1) ^ pack("H32",$comp2))));
             $sign = strtoupper(hash_hmac('sha1', $string, pack('H*', $key)));
             if (strcasecmp($params['p_sign'],$sign) == 0) {
-                //Если подпись совпала, то выполняем необходимые действия. Для примера записываем результат в файл, если операция прошла успешно:
+                //Если подпись совпала, то выполняем необходимые действия.
                 if ((int)$params['result'] == 0 && strcasecmp($params['rc'],'00') == 0) {
-    
+                    $orderID = $_POST['ORDER'] - 100000; // это из-за мин. длины;
+                    Pay::changeStatus($orderID, 1);
                 }
             }
         }
@@ -159,8 +143,10 @@ class PayPsb {
      */
     public static function sendCart()
     {
-        $comp1 = 'C50E41160302E0F5D6D59F1AA3925C45';
-        $comp2 = '00000000000000000000000000000000';
+        $cfg = self::cfg();
+        $comp1 = $cfg['key1'];
+        $comp2 = $cfg['key2'];
+
         $receipt = [
             "PhoneOrEmail" => 'test@yourdomain.test',
             "ClientId" => 'AAAAA15',

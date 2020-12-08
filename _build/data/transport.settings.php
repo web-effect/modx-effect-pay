@@ -1,6 +1,17 @@
 <?php
 
 $data['modSystemSetting'] = [
+    'shop' => [
+        'fields' => [
+            'key' => $config['component']['namespace'].'.shop',
+            'value' => 'shopkeeper3',
+            'xtype' => 'textfield',
+            'namespace' => $config['component']['namespace'],
+            'area' => $config['component']['namespace'].'.main'
+        ],
+        'options' => $config['data_options']['modSystemSetting']
+    ],
+
     'return_page' => [
         'fields' => [
             'key' => $config['component']['namespace'].'.return_page',
